@@ -1,12 +1,7 @@
-//Regular Polygon class
-
 #include "Polygon.cxx"
 #include "LinePoint.h"
-#ifndef REGULARPOLYGON_H
-#define REGULARPOLYGON_H
 
 using namespace std;
-
 
 /**
 * @brief Regular Polygon class
@@ -54,4 +49,4 @@ class RegularPolygon : public Polygon {
 	
 };
 
-#endif
+
