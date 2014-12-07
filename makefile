@@ -1,26 +1,25 @@
-testLinePoint: catch.hpp
-	g++ -Wall -o testLinePoint testLinePoint.cxx LinePoint.cxx
+all: libcppgeo.a
 
-unittest: catch.hpp
-	g++ -Wall  -o unittest unittest.cxx LinePoint.cxx Polygon.cxx
+tests: testLinePoint
 
-polygon-test: polygon-test.o LinePoint.o Polygon.o
-	g++ -Wall  polygon-test.o LinePoint.o Polygon.o -o polytest
+libcppgeo.a: src/LinePoint.o src/Polygon.o src/RegularPolygon.o src/Square.o
+	ar -rc libcppgeo.a src/LinePoint.o src/Polygon.cxx src/RegularPolygon.o src/Square.o 
+	mv libcppgeo.a lib/
 
-Square.o: LinePoint.o
-	g++ -Wall  -c -std=c++11 Square.cxx
+testLinePoint: include/catch.hpp
+	g++ -Wall src/testLinePoint.cxx src/LinePoint.cxx -o tests/testLinePoint
 
-RegularPolygon.o: RegularPolygon.cxx LinePoint.o
-	g++ -Wall  -c -std=c++11 RegularPolygon.cxx
+src/Square.o: src/LinePoint.o
+	g++ -c -std=c++11 src/Square.cxx -o src/Square.o
 
-polygon-test.o: polygon-test.cxx
-	g++ -Wall -c -std=c++11 polygon-test.cxx
+src/RegularPolygon.o: src/RegularPolygon.cxx src/LinePoint.o
+	g++ -Wall  -c -std=c++11 src/RegularPolygon.cxx -o src/RegularPolygon.o
 
-Polygon.o: Polygon.cxx LinePoint.o
-	g++ -Wall -c -std=c++11 Polygon.cxx
+src/Polygon.o: src/Polygon.cxx src/LinePoint.o
+	g++ -Wall -c -std=c++11 src/Polygon.cxx -o src/Polygon.o
 
-LinePoint.o: LinePoint.cxx
-	g++ -Wall  -c -std=c++11 LinePoint.cxx
+src/LinePoint.o: src/LinePoint.cxx
+	g++ -Wall -c -std=c++11 src/LinePoint.cxx -o src/LinePoint.o
 
 clean:
-	@rm -f *o unittest unittestLinePoint test
+	@rm -f src/*o bin/* lib/* tests/*
