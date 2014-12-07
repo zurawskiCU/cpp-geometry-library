@@ -21,7 +21,7 @@ RegularPolygon::RegularPolygon(int numberSides, double sideLen){
 	sideLength = sideLen;
 	interiorAngle = (numberSides-2)*(180/numberSides);
 	double centerX = sideLen/2;
-	double centerY = centerX*tan(interiorAngle/2);
+	double centerY = centerX*tan((interiorAngle/2)*(M_PI/180));
 	centerPoint = Point(centerX, centerY);
 	
 	
