@@ -19,10 +19,11 @@ RegularPolygon::RegularPolygon(){
 RegularPolygon::RegularPolygon(int numberSides, double sideLen){
 	sides = numberSides;
 	sideLength = sideLen;
-	double centerX = sideLen/2;
-	double centerY = sqrt(((sideLen/(2*sin(M_PI/numberSides)))*(sideLen/(2*sin(M_PI/numberSides))))-((numberSides/2)*(numberSides/2)));
-	centerPoint = Point(centerX, centerY);
 	interiorAngle = (numberSides-2)*(180/numberSides);
+	double centerX = sideLen/2;
+	double centerY = centerX*tan(interiorAngle/2);
+	centerPoint = Point(centerX, centerY);
+	
 	
 	Point nextPoint(0,0);
 	
