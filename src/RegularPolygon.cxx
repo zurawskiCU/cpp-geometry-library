@@ -1,5 +1,4 @@
-#include "RegularPolygon.h"
-		
+#include "RegularPolygon.h"		
 //Constructors
 
  /**
@@ -21,7 +20,7 @@ RegularPolygon::RegularPolygon(int numberSides, double sideLen){
 	sideLength = sideLen;
 	interiorAngle = (numberSides-2)*(180/numberSides);
 	double centerX = sideLen/2;
-	double centerY = centerX*tan(interiorAngle/2);
+	double centerY = centerX * tan((interiorAngle/2)*(M_PI/180));
 	centerPoint = Point(centerX, centerY);
 	
 	
@@ -44,7 +43,7 @@ RegularPolygon::RegularPolygon(int numberSides, double sideLen, Point center){
 	sides = numberSides;
 	sideLength = sideLen;
 	centerPoint = center;
-	interiorAngle = (sideLen-2)*(180/numberSides);
+	interiorAngle = (numberSides-2)*(180/numberSides);
 	double apothem = (sideLen*tan(interiorAngle/2))/2;
 	double nextX = (center.getXCoord())-(.5*sideLen);
 	double nextY = (center.getYCoord())-apothem;
@@ -120,7 +119,7 @@ void RegularPolygon::setNumberOfSides(int numSides){
 * @param area The new area of the Regular Polygon
 */		
 void RegularPolygon::setArea(double area){
-	double newSideLength = sqrt((4*area)/(this->getNumberSides()*(1/tan(180/this->getNumberSides()))));
+	double newSideLength = sqrt((4*area)/(this->getNumberSides()*(1/tan((M_PI/this->getNumberSides())))));
 	this->setSideLength(newSideLength);
 }				
 
@@ -140,7 +139,7 @@ void RegularPolygon::setPerimeter(double perimeter){
 * @param radius The new circumradius of the Regular Polygon
 */		
 void RegularPolygon::setCircumradius(double radius){
-	double newSideLen = 2*radius*sin((this->getInteriorAngle())/2);
+	double newSideLen = 2*radius*sin((this->getInteriorAngle())/2 * (M_PI/180));
 	this->setSideLength(newSideLen);
 }
 
@@ -150,7 +149,7 @@ void RegularPolygon::setCircumradius(double radius){
 * @param apothem The new apothem of the Regular Polygon
 */		
 void RegularPolygon::setApothem(double apothem){
-	double newSideLen = 2 * apothem/(tan((this->getInteriorAngle())/2));
+	double newSideLen = 2 * apothem/(tan((this->getInteriorAngle())/2*(M_PI/180)));
 	this-> setSideLength(newSideLen);
 } 
 
@@ -193,7 +192,7 @@ double RegularPolygon::getArea(){
 * @return The circumradius of the Regular Polygon
 */			
 double RegularPolygon::getCircumradius(){
-	return (this->getNumberSides())/(2*sin(M_PI/this-> getNumberSides()));
+	return (this->getSideLength()/2)/(cos((this->getInteriorAngle()/2)*(M_PI/180)));
 }
 
 /**
@@ -202,5 +201,5 @@ double RegularPolygon::getCircumradius(){
 * @return The apothem of the Regular Polygon
 */			
 double RegularPolygon::getApothem(){
-	return sqrt(((this->getSideLength()/(2*sin(M_PI/this->getNumberSides())))*(this->getSideLength()/(2*sin(M_PI/this->getNumberSides()))))-((this->getNumberSides()/2)*(this->getNumberSides()/2)));
+	return (this->getSideLength()/2)*tan((this->getInteriorAngle()/2)*(M_PI/180));
 }
