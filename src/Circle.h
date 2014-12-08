@@ -4,6 +4,10 @@
 #include "LinePoint.h"
 #include <vector>
 
+/**
+* @brief Circle class
+* @details A class to represent squares in 2-dimensional cartesian space.
+*/
 class Circle {
 	private:
 		Point center;
