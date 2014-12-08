@@ -6,6 +6,11 @@
 
 using namespace std;
 
+
+/**
+* @brief Triangle class
+* @details A class to represent triangles in 3-dimensional cartesian space.
+*/
 class Triangle {
 	private:
 		vector<Point> Points;
