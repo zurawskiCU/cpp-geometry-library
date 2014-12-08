@@ -20,6 +20,12 @@ src/Polygon.o: src/Polygon.cxx src/LinePoint.o
 
 src/LinePoint.o: src/LinePoint.cxx
 	g++ -Wall -c -std=c++11 src/LinePoint.cxx -o src/LinePoint.o
+	
+src/demo.o: src/demo.cxx src/LinePoint.cxx src/Circle.cxx src/Sphere.cxx
+	g++ -Wall -c -std=c++11 src/LinePoint.cxx src/Circle.cxx src/Sphere.cxx -o demo.o
+	
+DEMO: src/demo.o
+	g++ -std=c++11 src/demo.o -o DEMO
 
 clean:
 	@rm -f src/*o bin/* lib/* tests/*
