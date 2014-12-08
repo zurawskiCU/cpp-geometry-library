@@ -4,6 +4,11 @@
 #include "LinePoint.h"
 #include <vector>
 
+
+/**
+* @brief Square class
+* @details A class to represent squares in 3-dimensional cartesian space.
+*/
 class Square {
 	private:
 		std::vector<Point> point;
