@@ -26,3 +26,4 @@ DEMO: src/demo.cxx src/Circle.cxx src/LinePoint.cxx src/Sphere.cxx
 
 clean:
 	@rm -f src/*o bin/* lib/* tests/*
+	@rm DEMO
